@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toolbox – Unterricht</title>
+  <meta name="description" content="Link-Hub für Unterrichts-Tools" />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#111a33;
+      --panel2:#0f1730;
+      --text:#e9eefc;
+      --muted:#b8c2e6;
+      --accent:#7aa2ff;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background:
+        radial-gradient(1000px 700px at 10% -10%, rgba(122,162,255,.35), transparent 60%),
+        radial-gradient(900px 650px at 90% 0%, rgba(140,255,220,.18), transparent 55%),
+        radial-gradient(1200px 900px at 50% 120%, rgba(255,170,90,.15), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 60px}
+    header{
+      display:flex; gap:16px; align-items:flex-start; justify-content:space-between;
+      margin:10px 0 20px;
+    }
+    .title{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .title h1{
+      margin:0;
+      font-size: clamp(22px, 3.6vw, 36px);
+      letter-spacing:.2px;
+    }
+    .title p{margin:0; color:var(--muted); line-height:1.4}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(17,26,51,.55);
+      box-shadow: var(--shadow);
+      color:var(--muted);
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .dot{width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 5px rgba(122,162,255,.15)}
+    .controls{
+      display:grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap:12px;
+      margin:18px 0 18px;
+    }
+    @media (max-width:720px){
+      header{flex-direction:column; align-items:stretch}
+      .controls{grid-template-columns: 1fr}
+      .badge{justify-content:center}
+    }
+    .input, .select{
+      width:100%;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      background:rgba(17,26,51,.55);
+      color:var(--text);
+      outline:none;
+      box-shadow: var(--shadow);
+    }
+    .input::placeholder{color:rgba(233,238,252,.55)}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top: 14px;
+    }
+    @media (max-width:980px){ .grid{grid-template-columns: repeat(2, minmax(0, 1fr));}}
+    @media (max-width:640px){ .grid{grid-template-columns: 1fr;}}
+    .card{
+      position:relative;
+      padding:16px 16px 14px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(17,26,51,.8), rgba(15,23,48,.7));
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transition: transform .14s ease, border-color .14s ease;
+      min-height: 132px;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(122,162,255,.35);
+    }
+    .tag{
+      display:inline-flex;
+      font-size: 12px;
+      color: rgba(233,238,252,.85);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(122,162,255,.14);
+      padding:4px 9px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+    .card h3{margin:0 0 6px; font-size: 18px}
+    .card p{margin:0 0 12px; color:var(--muted); line-height:1.35; font-size: 14px}
+    .meta{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      color: rgba(233,238,252,.75);
+      font-size: 13px;
+      margin-top:auto;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 11px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+    }
+    .btn:hover{border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.12)}
+    .footer{
+      margin-top: 22px;
+      color: rgba(233,238,252,.65);
+      font-size: 13px;
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    .hint{color: rgba(233,238,252,.6)}
+    .hidden{display:none !important;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Toolbox für den Unterricht</h1>
+        <p>Ein zentraler Einstiegspunkt für Ihre kleinen Helferlein (Apps, Übungsseiten, Generatoren, Checker …).</p>
+      </div>
+      <div class="badge" title="Lokal nutzbar – passt auch auf GitHub Pages / Schulserver">
+        <span class="dot"></span>
+        <span>Link-Hub • einfache Pflege</span>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Filter">
+      <input id="search" class="input" type="search" placeholder="Suchen (z. B. „SQL“, „OOP“, „Struktogramm“)…" />
+      <select id="category" class="select" aria-label="Kategorie wählen">
+        <option value="all">Alle Kategorien</option>
+      </select>
+    </section>
+
+    <main id="grid" class="grid" aria-label="Tools"></main>
+
+    <div class="footer">
+      <span class="hint">Tipp: Links und Kategorien unten im <code>tools</code>-Array anpassen.</span>
+      <span id="count"></span>
+    </div>
+  </div>
+
+  <script>
+    // 1) HIER PFLEGEN SIE IHRE TOOLS:
+    // - title: Name der Seite
+    // - url: Link
+    // - desc: kurze Beschreibung
+    // - category: z.B. "SQL", "OOP", "Netze", "React Native", "Sonstiges"
+    // - note: optional, z.B. "WG11", "WG12", "neu", "offline"
+    const tools = [
+      {
+        title: "Struktogramm-Tester",
+        url: "https://example.com/struktogramm",
+        desc: "Schülerlösungen interaktiv ausführen und Schritt-für-Schritt prüfen.",
+        category: "Programmierung",
+        note: "WG12"
+      },
+      {
+        title: "SQL-Übungsarena",
+        url: "https://example.com/sql",
+        desc: "Aufgabenpool + direkte Auswertung von SELECT-Abfragen.",
+        category: "Datenbanken",
+        note: "WG11/WG13"
+      },
+      {
+        title: "Subnetz-Rechner",
+        url: "https://example.com/netze",
+        desc: "IPv4-Netz/Hostteil, Adressbereiche und Subnetzmasken berechnen.",
+        category: "Netze",
+        note: "BPE 4"
+      },
+      {
+        title: "React Native Komponenten-Check",
+        url: "https://example.com/rn",
+        desc: "Mini-Checkliste für Textfeld, Button, State und Events.",
+        category: "Mobile Apps",
+        note: "WG12"
+      },
+      {
+        title: "Arbeitsblatt-Generator",
+        url: "https://example.com/generator",
+        desc: "Schnell Arbeitsblätter als PDF/HTML zusammenstellen.",
+        category: "Organisation",
+        note: "neu"
+      }
+    ];
+
+    // 2) UI-Logik (Suche + Kategorie-Filter)
+    const grid = document.getElementById("grid");
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const count = document.getElementById("count");
+
+    function uniqueCategories(items){
+      const set = new Set(items.map(x => x.category).filter(Boolean));
+      return Array.from(set).sort((a,b) => a.localeCompare(b, "de"));
+    }
+
+    function renderCategoryOptions(){
+      uniqueCategories(tools).forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        category.appendChild(opt);
+      });
+    }
+
+    function cardTemplate(t){
+      const note = t.note ? `• ${escapeHtml(t.note)}` : "";
+      return `
+        <article class="card" data-title="${escapeAttr(t.title)}" data-desc="${escapeAttr(t.desc)}" data-category="${escapeAttr(t.category)}">
+          <div class="tag">${escapeHtml(t.category || "Tool")}</div>
+          <h3>${escapeHtml(t.title)}</h3>
+          <p>${escapeHtml(t.desc || "")}</p>
+          <div class="meta">
+            <span>${note ? note.slice(2) : " "}</span>
+            <a class="btn" href="${escapeAttr(t.url)}" target="_blank" rel="noopener">
+              Öffnen <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      `;
+    }
+
+    function escapeHtml(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+    function escapeAttr(s){ return escapeHtml(s).replaceAll("\n"," "); }
+
+    function render(){
+      const q = search.value.trim().toLowerCase();
+      const cat = category.value;
+
+      const filtered = tools.filter(t => {
+        const inCat = (cat === "all") || (t.category === cat);
+        const hay = `${t.title} ${t.desc} ${t.category} ${t.note}`.toLowerCase();
+        const inSearch = !q || hay.includes(q);
+        return inCat && inSearch;
+      });
+
+      grid.innerHTML = filtered.map(cardTemplate).join("");
+      count.textContent = `${filtered.length} / ${tools.length} Tools`;
+    }
+
+    renderCategoryOptions();
+    render();
+
+    search.addEventListener("input", render);
+    category.addEventListener("change", render);
+  </script>
+</body>
+</html>
